@@ -1,0 +1,12 @@
+.terraform/*
+
+out.plan
+
+terraform.tfstate
+terraform.tfstate.*
+*.tfvars
+scripts/
+*kube-confg.*
+tmp/
+backup/
+output/
