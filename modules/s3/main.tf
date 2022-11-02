@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "main" {
   bucket        = "${var.project}-cache"
-  acl           = "private"
+  aws_s3_bucket_acl = "private"
   force_destroy = true
 
 }
