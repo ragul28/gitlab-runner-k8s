@@ -36,3 +36,6 @@ variable "eks_version" {}
 
 ## gitlab
 variable "gitlab_url" {}
+variable "gitlab_reg_token_map" {}
+variable "runner_concurrent_count" {}
+variable "runner_helm_version" {}

@@ -96,8 +96,4 @@ EOT
     name  = "unregisterRunners"
     value = "true"
   }
-
-  depends_on = [
-    kubernetes_namespace_v1.ns
-  ]
 }
