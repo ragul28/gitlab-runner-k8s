@@ -21,18 +21,24 @@ resource "aws_eks_cluster" "master" {
   ]
 }
 
-#Worker nodes
-resource "aws_eks_node_group" "worker" {
+#System node
+resource "aws_eks_node_group" "system" {
   cluster_name    = aws_eks_cluster.master.name
-  node_group_name = "${var.project}-nodes"
+  node_group_name = "${var.project}-system"
   node_role_arn   = aws_iam_role.node.arn
-  instance_types  = var.eks_instance_types
   subnet_ids      = var.eks_subnet_ids
 
+  instance_types  = var.eks_instance_types
+  capacity_type   = "ON_DEMAND"
+  
   version = var.eks_version
 
   scaling_config {
-    desired_size = var.node_count
+    desired_size = 1
+  }
+
+  labels = {
+    "eks.amazonaws.com/mode" = "system"
   }
 
   lifecycle {
@@ -48,13 +54,15 @@ resource "aws_eks_node_group" "worker" {
   ]
 }
 
-#Worker Spot nodes
-resource "aws_eks_node_group" "spot" {
+#Worker nodes
+resource "aws_eks_node_group" "worker" {
   cluster_name    = aws_eks_cluster.master.name
-  node_group_name = "${var.project}-spot"
+  node_group_name = "${var.project}-worker"
   node_role_arn   = aws_iam_role.node.arn
-  instance_types  = var.eks_instance_types
   subnet_ids      = var.eks_subnet_ids
+  
+  instance_types  = var.eks_instance_types
+  capacity_type   = "SPOT"
 
   version = var.eks_version
 
@@ -62,6 +70,16 @@ resource "aws_eks_node_group" "spot" {
     desired_size = var.node_count
     max_size     = var.node_max_count
     min_size     = var.node_min_count
+  }
+
+  labels = {
+    "eks.amazonaws.com/mode" = "builds"
+  }
+
+  taint = {
+    key    = "eks.amazonaws.com/nodepriority"
+    value  = "spot"
+    effect = "NoSchedule"
   }
 
   lifecycle {
