@@ -21,9 +21,8 @@ module "aws-eks" {
 }
 
 module "aws-s3" {
-  source      = "./modules/s3"
-  project     = var.project
-  environment = var.environment
+  source  = "./modules/s3"
+  project = var.project
 }
 
 module "helm" {

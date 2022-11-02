@@ -21,6 +21,8 @@ variable "public_subnets" {
   default = ["10.50.0.128/26", "10.50.0.192/26"]
 }
 
+variable "enable_natgw" {}
+
 ##EKS
 variable "node_count" {
   default = 1
@@ -31,3 +33,6 @@ variable "eks_instance_types" {
 }
 
 variable "eks_version" {}
+
+## gitlab
+variable "gitlab_url" {}
