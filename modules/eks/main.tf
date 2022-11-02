@@ -28,9 +28,9 @@ resource "aws_eks_node_group" "system" {
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.eks_subnet_ids
 
-  instance_types  = var.eks_instance_types
-  capacity_type   = "ON_DEMAND"
-  
+  instance_types = var.eks_instance_types
+  capacity_type  = "ON_DEMAND"
+
   version = var.eks_version
 
   scaling_config {
@@ -60,9 +60,9 @@ resource "aws_eks_node_group" "worker" {
   node_group_name = "${var.project}-worker"
   node_role_arn   = aws_iam_role.node.arn
   subnet_ids      = var.eks_subnet_ids
-  
-  instance_types  = var.eks_instance_types
-  capacity_type   = "SPOT"
+
+  instance_types = var.eks_instance_types
+  capacity_type  = "SPOT"
 
   version = var.eks_version
 

@@ -5,7 +5,7 @@ resource "helm_release" "gitlab_runners" {
   namespace        = each.key
   repository       = "https://charts.gitlab.io"
   chart            = "gitlab-runner"
-  version          = var.gitlab_runner_helm_version
+  version          = var.runner_helm_version
   create_namespace = true
   set {
     name  = "runnerRegistrationToken"
