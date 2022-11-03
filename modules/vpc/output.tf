@@ -10,3 +10,7 @@ output "pvt_subnet_ids" {
 output "pub_subnet_ids" {
   value = aws_subnet.public_subnet.*.id
 }
+
+output "eks_endpoint_sg_id" {
+  value = aws_security_group.eks_endpoint.id
+}
