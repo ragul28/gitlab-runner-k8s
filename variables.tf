@@ -28,6 +28,9 @@ variable "node_count" {
   default = 1
 }
 
+variable "node_max_count" {}
+variable "node_min_count" {}
+
 variable "eks_instance_types" {
   default = ["t3a.medium"]
 }

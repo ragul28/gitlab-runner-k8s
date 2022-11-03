@@ -35,6 +35,8 @@ resource "aws_eks_node_group" "system" {
 
   scaling_config {
     desired_size = 1
+    max_size     = 1
+    min_size     = 1
   }
 
   labels = {
@@ -76,11 +78,11 @@ resource "aws_eks_node_group" "worker" {
     "eks.amazonaws.com/mode" = "builds"
   }
 
-  taint = {
-    key    = "eks.amazonaws.com/nodepriority"
-    value  = "spot"
-    effect = "NoSchedule"
-  }
+  # taint = {
+  #   key    = "eks.amazonaws.com/nodepriority"
+  #   value  = "spot"
+  #   effect = "NoSchedule"
+  # }
 
   lifecycle {
     ignore_changes = [

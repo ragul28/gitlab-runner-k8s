@@ -17,6 +17,8 @@ module "aws-eks" {
   eks_endpoint_sg_id = module.aws-vpc.eks_endpoint_sg_id
   eks_instance_types = var.eks_instance_types
   node_count         = var.node_count
+  node_max_count     = var.node_max_count
+  node_min_count     = var.node_min_count
   eks_version        = var.eks_version
 }
 

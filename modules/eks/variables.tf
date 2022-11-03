@@ -7,6 +7,10 @@ variable "eks_endpoint_sg_id" {}
 variable "node_count" {
   default = 2
 }
+
+variable "node_max_count" {}
+variable "node_min_count" {}
+
 variable "eks_instance_types" {
   default = ["t3.small"]
 }
