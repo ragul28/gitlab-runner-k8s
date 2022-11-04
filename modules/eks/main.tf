@@ -1,6 +1,6 @@
 #EKS
 resource "aws_eks_cluster" "master" {
-  name     = var.project
+  name     = "${var.project}-eks"
   role_arn = aws_iam_role.eks_cluster.arn
   version  = var.eks_version
 

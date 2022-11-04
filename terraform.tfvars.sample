@@ -1,25 +1,28 @@
-project     = "gitlab-runner-eks"
-aws_region  = "us-east-1"
-environment = "test"
+project     = "glr-test"
+aws_region  = "us-west-1"
+environment = "dev"
 profile     = "default"
 
 # VPC
-vpc_id                    = null
-main_vpc_cidr_block       = "172.29.128.0/25"
-secondary_vpc_cidr_blocks = ["172.29.159.224/27", "172.29.128.128/27"]
+main_vpc_cidr_block = "10.20.128.0/24"
 
-az_set             = ["ap-southeast-1c", "ap-southeast-1a"]
-public_subnets     = ["172.29.159.224/27"]
-private_subnets    = ["172.29.128.0/26", "172.29.128.64/26"]
-db_private_subnets = ["172.29.128.128/28", "172.29.128.144/28"]
-enable_natgw       = false
-
-# Bastion
-bastion_instance_type = "t3a.nano"
-bastion_ami           = "ami-055d15d9cfddf7bd3"
-bastion_disk_size     = 10
+az_set          = ["us-east-1a", "us-east-1a"]
+public_subnets  = ["10.20.128.0/26", "10.20.128.64/26"]
+private_subnets = ["10.20.128.128/26", "10.64.128.192/26"]
+enable_natgw    = false
 
 # EKS
-eks_version        = "1.21"
-node_count         = 2
+eks_version        = "1.23"
 eks_instance_types = ["t3a.medium"]
+node_count         = 2
+node_min_count     = 1
+node_max_count     = 3
+
+# Gitlab
+gitlab_url              = "https://gitlab.com"
+runner_concurrent_count = 10
+runner_helm_version     = "0.46.0"
+
+gitlab_reg_token_map = {
+  "glr-test-group" = "GR134894112hFqjC9ZsecwEcg9sSw"
+}
