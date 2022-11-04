@@ -78,11 +78,11 @@ resource "aws_eks_node_group" "worker" {
     "eks.amazonaws.com/mode" = "builds"
   }
 
-  # taint = {
-  #   key    = "eks.amazonaws.com/nodepriority"
-  #   value  = "spot"
-  #   effect = "NoSchedule"
-  # }
+  taint {
+    key    = "eks.amazonaws.com/nodepriority"
+    value  = "spot"
+    effect = "NO_SCHEDULE"
+  }
 
   lifecycle {
     ignore_changes = [
