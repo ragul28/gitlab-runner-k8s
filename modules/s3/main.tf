@@ -18,5 +18,5 @@ resource "aws_s3_bucket_acl" "main" {
 variable "project" {}
 
 output "s3_bucket_name" {
-  value = [aws_s3_bucket.main.bucket_domain_name, aws_s3_bucket.main.id]
+  value = aws_s3_bucket.main.bucket_domain_name
 }
